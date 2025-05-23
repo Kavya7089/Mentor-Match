@@ -166,3 +166,31 @@
   from { transform: translateY(10px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
+
+/* Add to e:\final\src\index.css */
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0.9); }
+  40% { transform: scale(1.2); }
+}
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.splash-zoom {
+  animation: splash-zoom-in 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes splash-zoom-in {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.5;
+  }
+  60% {
+    transform: scale(3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 1;
+  }
+}
