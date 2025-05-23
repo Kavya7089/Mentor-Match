@@ -119,14 +119,14 @@ const StudentDashboard: React.FC = () => {
             color: 'bg-emerald-50 text-emerald-700',
           },
         ].map((stat, index) => (
-          <div key={index} className="card overflow-hidden animate-slide-in ">
+          <div key={index} className="card bg-primary-200 overflow-hidden animate-slide-in ">
             <div className="p-6">
               <div className="flex items-center">
                 <div className={`rounded-md p-2 ${stat.color.split(' ')[0]}`}>
                   {stat.icon}
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-500">{stat.label}</p>
+                  <p className="text-sm font-medium text-gray-800">{stat.label}</p>
                   <p className="text-2xl font-semibold text-gray-900">{stat.value}</p>
                 </div>
               </div>
@@ -138,9 +138,9 @@ const StudentDashboard: React.FC = () => {
       <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <div className="card overflow-hidden bg-opacity-80 animate-fade-in">
-            <div className="border-b border-gray-200 bg-white px-6 py-4">
-              <h2 className="text-lg font-medium text-gray-900">Your Learning Journey</h2>
-              <p className="text-sm text-gray-500">Current courses and progress</p>
+            <div className="  bg-primary-800 px-6 py-4">
+              <h2 className="text-lg font-medium text-white">Your Learning Journey</h2>
+              <p className="text-sm text-gray-400">Current courses and progress</p>
             </div>
             <div className="divide-y divide-gray-200">
               {mockCourses.map(course => (
@@ -188,7 +188,7 @@ const StudentDashboard: React.FC = () => {
                 </div>
               ))}
             </div>
-            <div className="border-t border-gray-200 bg-gray-50 px-6 py-3 text-center">
+            <div className="border-t border-gray-200 bg-primary-200 px-6 py-3 text-center">
               <button className="text-sm font-medium text-primary-600 hover:text-primary-700">
                 Explore more courses
               </button>
@@ -196,9 +196,9 @@ const StudentDashboard: React.FC = () => {
           </div>
           
           <div className="mt-6 card overflow-hidden bg-opacity-80 animate-slide-in">
-            <div className="border-b border-gray-200 bg-white px-6 py-4">
+            <div className="border-b border-gray-200 bg-primary-200 px-6 py-4">
               <h2 className="text-lg font-medium text-gray-900">Top Mentors</h2>
-              <p className="text-sm text-gray-500">Connect with expert mentors in your field</p>
+              <p className="text-sm text-gray-800">Connect with expert mentors in your field</p>
             </div>
             <div className="grid grid-cols-1 divide-y divide-gray-200 md:grid-cols-2 md:divide-y-0 md:divide-x">
               {mockMentors.slice(0, 2).map(mentor => (
@@ -261,7 +261,7 @@ const StudentDashboard: React.FC = () => {
 
         <div>
           <div className="card overflow-hidden  bg-opacity-80">
-            <div className="border-b border-gray-200 bg-white px-6 py-4">
+            <div className="border-b border-gray-200 bg-primary-200 px-6 py-4">
               <h2 className="text-lg font-medium text-gray-900">Recommended Resources</h2>
               <p className="text-sm text-gray-500">Based on your learning goals</p>
             </div>
@@ -322,7 +322,7 @@ const StudentDashboard: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-6 card p-6">
+          <div className="mt-6 card bg-primary-100 p-6">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-medium text-gray-900">Chain-Mines</h3>
               <span className="badge badge-primary">{user.points} points</span>
@@ -346,6 +346,7 @@ const StudentDashboard: React.FC = () => {
               <button className="btn btn-outline !py-1 !px-3 text-sm">
                 <Award size={16} className="mr-1" /> Leaderboard
               </button>
+              
               <button className="btn btn-primary !py-1 !px-3 text-sm">
                 <TrendingUp size={16} className="mr-1" /> View Challenges
               </button>

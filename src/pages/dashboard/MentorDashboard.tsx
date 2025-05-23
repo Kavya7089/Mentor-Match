@@ -64,6 +64,7 @@ const MentorDashboard: React.FC = () => {
       title="Mentor Dashboard" 
       description="Manage your mentees and requests"
     >
+      {/* Stats Row */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {[
           { 
@@ -91,14 +92,14 @@ const MentorDashboard: React.FC = () => {
             color: 'bg-emerald-50 text-emerald-700',
           },
         ].map((stat, index) => (
-          <div key={index} className="card overflow-hidden animate-slide-in">
+          <div key={index} className="card overflow-hidden bg-primary-200 border-primary-400">
             <div className="p-6">
               <div className="flex items-center">
                 <div className={`rounded-md p-2 ${stat.color.split(' ')[0]}`}>
                   {stat.icon}
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-500">{stat.label}</p>
+                  <p className="text-sm font-medium text-gray-700">{stat.label}</p>
                   <p className="text-2xl font-semibold text-gray-900">{stat.value}</p>
                 </div>
               </div>
@@ -107,12 +108,13 @@ const MentorDashboard: React.FC = () => {
         ))}
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-8  lg:grid-cols-3">
-        <div className="lg:col-span-2 ">
-          <div className="card overflow-hidden bg-white bg-opacity-80  animate-fade-in">
-            <div className="border-b border-gray-200 bg-white bg-opacity-80 px-6 py-4">
-              <h2 className="text-lg font-medium text-gray-900">Your Mentees</h2>
-              <p className="text-sm text-gray-500">Manage and track your mentees' progress</p>
+      <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
+        {/* Mentees Section */}
+        <div className="lg:col-span-2">
+          <div className="card overflow-hidden= bg-opacity-80">
+            <div className="border-b border-primary-200 bg-primary-700 px-6 py-4">
+              <h2 className="text-lg font-medium text-white">Your Mentees</h2>
+              <p className="text-sm text-gray-400">Manage and track your mentees' progress</p>
             </div>
             <div className="divide-y divide-gray-200">
               {mockMentees.map(mentee => (
@@ -163,11 +165,12 @@ const MentorDashboard: React.FC = () => {
           </div>
         </div>
 
+        {/* Requests and Quick Actions */}
         <div>
-          <div className="card overflow-hidden bg-opacity-80 animate-slide-in">
-            <div className="border-b border-gray-200 bg-white  px-6 py-4">
+          <div className="card overflow-hidden bg-opacity-80">
+            <div className="border-b border-gray-200 bg-primary-200 px-6 py-4">
               <h2 className="text-lg font-medium text-gray-900">Mentee Requests</h2>
-              <p className="text-sm text-gray-500">Students waiting for your guidance</p>
+              <p className="text-sm text-gray-700">Students waiting for your guidance</p>
             </div>
             <div className="divide-y divide-gray-200">
               {mockRequests.map(request => (
@@ -180,7 +183,7 @@ const MentorDashboard: React.FC = () => {
                     />
                     <div className="ml-4">
                       <h3 className="text-sm font-medium text-gray-900">{request.name}</h3>
-                      <p className="text-xs text-gray-500">{request.subject}</p>
+                      <p className="text-xs text-gray-700">{request.subject}</p>
                     </div>
                   </div>
                   <p className="mt-3 text-sm text-gray-600">"{request.message}"</p>

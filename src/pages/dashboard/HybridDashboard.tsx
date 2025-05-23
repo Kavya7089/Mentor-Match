@@ -21,13 +21,13 @@ const HybridDashboard: React.FC = () => {
       description="Switch between your mentor and student roles"
     >
       {/* Role Toggle */}
-      <div className="mx-auto mb-8 flex w-full max-w-sm items-center justify-center rounded-lg bg-white p-1 shadow-sm">
+      <div className="mx-auto mb-8 flex w-full max-w-sm items-center justify-center rounded-lg bg-primary-200 p-1 shadow-sm">
         <button
           onClick={() => setActiveRole('student')}
-          className={`relative flex flex-1 items-center justify-center space-x-2 rounded-md px-4 py-3 text-sm font-medium transition-all ${
+          className={`relative flex flex-1 items-center justify-center bg-primary-100 space-x-2 rounded-md px-4 py-3 text-sm font-medium transition-all ${
             activeRole === 'student'
               ? 'bg-primary-600 text-white'
-              : 'text-gray-500 hover:text-gray-900'
+              : 'text-gray-700 hover:text-gray-900'
           }`}
         >
           <BookOpen size={16} />
@@ -35,10 +35,10 @@ const HybridDashboard: React.FC = () => {
         </button>
         <button
           onClick={() => setActiveRole('mentor')}
-          className={`relative flex flex-1 items-center justify-center space-x-2 rounded-md px-4 py-3 text-sm font-medium transition-all ${
+          className={`relative flex flex-1 items-center justify-center bg-primary-100 space-x-2 rounded-md px-4 py-3 text-sm font-medium transition-all ${
             activeRole === 'mentor'
               ? 'bg-primary-600 text-white'
-              : 'text-gray-500 hover:text-gray-900'
+              : 'text-gray-700 hover:text-gray-900'
           }`}
         >
           <Users size={16} />
@@ -74,14 +74,14 @@ const HybridDashboard: React.FC = () => {
             color: 'bg-emerald-50 text-emerald-700',
           },
         ].map((stat, index) => (
-          <div key={index} className="card overflow-hidden">
+          <div key={index} className="card overflow-hidden bg-primary-200 border-primary-400">
             <div className="p-6">
               <div className="flex items-center">
                 <div className={`rounded-md p-2 ${stat.color.split(' ')[0]}`}>
                   {stat.icon}
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-500">{stat.label}</p>
+                  <p className="text-sm font-medium text-gray-700">{stat.label}</p>
                   <p className="text-2xl font-semibold text-gray-900">{stat.value}</p>
                 </div>
               </div>
@@ -103,23 +103,23 @@ const HybridDashboard: React.FC = () => {
           {activeRole === 'student' ? (
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               <div className="lg:col-span-2">
-                <div className="card overflow-hidden bg-opacity-80">
-                  <div className="border-b border-gray-200 bg-white px-6 py-4">
-                    <h2 className="text-lg font-medium text-gray-900">Your Learning Journey</h2>
-                    <p className="text-sm text-gray-500">Current courses and progress</p>
+                <div className="card overflow-hidden bg-primary-200 bg-opacity-80">
+                  <div className="border-b border-primary-200 bg-primary-700 px-6 py-4">
+                    <h2 className="text-lg font-medium text-white">Your Learning Journey</h2>
+                    <p className="text-sm text-gray-400">Current courses and progress</p>
                   </div>
                   <div className="p-6">
                     <div className="mb-6 flex items-center justify-between">
                       <div>
                         <h3 className="text-lg font-medium text-gray-900">Introduction to React</h3>
-                        <p className="text-sm text-gray-500">Prof. Lisa Johnson</p>
+                        <p className="text-sm text-grey-700">Prof. Lisa Johnson</p>
                       </div>
                       <div className="badge badge-primary">In Progress</div>
                     </div>
                     
                     <div className="mb-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-500">Progress</span>
+                        <span className="text-sm text-grey-700">Progress</span>
                         <span className="text-sm font-medium text-primary-600">65%</span>
                       </div>
                       <div className="mt-1 h-2 w-full rounded-full bg-gray-200">
@@ -130,7 +130,7 @@ const HybridDashboard: React.FC = () => {
                       </div>
                     </div>
                     
-                    <p className="mb-4 text-sm text-gray-600">
+                    <p className="mb-4 text-sm text-gray-700">
                       Next session: Tomorrow, 2:00 PM
                     </p>
                     
@@ -141,10 +141,10 @@ const HybridDashboard: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="mt-6 card overflow-hidden  bg-opacity-80">
-                  <div className="border-b border-gray-200 bg-white px-6 py-4">
+                <div className="mt-6 card overflow-hidden bg-primary-200  bg-opacity-80">
+                  <div className="border-b border-gray-200 bg-primary-200 px-6 py-4">
                     <h2 className="text-lg font-medium text-gray-900">Recommended Mentors</h2>
-                    <p className="text-sm text-gray-500">Based on your interests</p>
+                    <p className="text-sm text-grey-700">Based on your interests</p>
                   </div>
                   <div className="divide-y divide-gray-200">
                     <div className="p-6">
@@ -164,7 +164,7 @@ const HybridDashboard: React.FC = () => {
                               </svg>
                             </div>
                           </div>
-                          <p className="mt-1 text-sm text-gray-500">Mobile App Development Expert</p>
+                          <p className="mt-1 text-sm text-grey-700">Mobile App Development Expert</p>
                         </div>
                       </div>
                       <div className="mt-4 flex justify-end space-x-2">
@@ -177,10 +177,10 @@ const HybridDashboard: React.FC = () => {
               </div>
               
               <div>
-                <div className="card overflow-hidden  bg-opacity-80">
-                  <div className="border-b border-gray-200 bg-white px-6 py-4">
+                <div className="card overflow-hidden bg-primary-200 bg-opacity-80">
+                  <div className="border-b border-gray-200 bg-primary-200 px-6 py-4">
                     <h2 className="text-lg font-medium text-gray-900">Premium Resources</h2>
-                    <p className="text-sm text-gray-500">Unlock with Chain-Mines points</p>
+                    <p className="text-sm text-grey-700">Unlock with Chain-Mines points</p>
                   </div>
                   <div className="divide-y divide-gray-200">
                     <div className="p-6">
@@ -193,7 +193,7 @@ const HybridDashboard: React.FC = () => {
                             <h3 className="text-sm font-medium text-gray-900">Advanced React Patterns</h3>
                             <span className="badge badge-highlight">Premium</span>
                           </div>
-                          <p className="mt-1 text-xs text-gray-500">E-Book + Video Series</p>
+                          <p className="mt-1 text-xs text-grey-700">E-Book + Video Series</p>
                           <p className="mt-1 text-xs font-medium text-highlight-600">
                             250 points
                           </p>
@@ -208,22 +208,22 @@ const HybridDashboard: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="mt-6 card p-6 ">
+                <div className="mt-6 card p-6 bg-primary-100 ">
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-medium text-gray-900">Upcoming Events</h3>
                     <span className="badge badge-secondary">2 events</span>
                   </div>
                   <div className="mt-4 space-y-4 ">
-                    <div className="rounded-lg border border-gray-200 p-4  bg-opacity-80">
+                    <div className="rounded-lg border border-gray-200 p-4 bg-primary-200 bg-opacity-80">
                       <p className="text-sm font-medium text-gray-900">Web Development Workshop</p>
-                      <p className="mt-1 text-xs text-gray-500">Friday, 3:00 PM - 5:00 PM</p>
+                      <p className="mt-1 text-xs text-grey-700">Friday, 3:00 PM - 5:00 PM</p>
                       <div className="mt-3 flex justify-end">
                         <button className="btn btn-outline !py-1 !px-3 text-xs">Add to Calendar</button>
                       </div>
                     </div>
-                    <div className="rounded-lg border border-gray-200 p-4  bg-opacity-80">
+                    <div className="rounded-lg border border-gray-200 p-4 bg-primary-200 bg-opacity-80">
                       <p className="text-sm font-medium text-gray-900">AI Ethics Discussion</p>
-                      <p className="mt-1 text-xs text-gray-500">Saturday, 2:00 PM - 3:30 PM</p>
+                      <p className="mt-1 text-xs text-grey-700">Saturday, 2:00 PM - 3:30 PM</p>
                       <div className="mt-3 flex justify-end">
                         <button className="btn btn-outline !py-1 !px-3 text-xs">Add to Calendar</button>
                       </div>
@@ -237,9 +237,9 @@ const HybridDashboard: React.FC = () => {
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               <div className="lg:col-span-2">
                 <div className="card overflow-hidden  bg-opacity-80">
-                  <div className="border-b border-gray-200 bg-white px-6 py-4">
+                  <div className="border-b border-gray-200 bg-primary-200 px-6 py-4">
                     <h2 className="text-lg font-medium text-gray-900">Your Mentees</h2>
-                    <p className="text-sm text-gray-500">Students you are currently mentoring</p>
+                    <p className="text-sm text-grey-700">Students you are currently mentoring</p>
                   </div>
                   <div className="divide-y divide-gray-200">
                     <div className="p-6">
@@ -252,12 +252,12 @@ const HybridDashboard: React.FC = () => {
                         <div className="ml-4 flex-1">
                           <div className="flex items-center justify-between">
                             <h3 className="text-sm font-medium text-gray-900">Emma Wilson</h3>
-                            <span className="flex items-center text-xs text-gray-500">
+                            <span className="flex items-center text-xs text-grey-700">
                               Last active: 2 hours ago
                             </span>
                           </div>
                           <div className="mt-1 flex items-center justify-between">
-                            <span className="text-xs text-gray-500">Web Development</span>
+                            <span className="text-xs text-grey-700">Web Development</span>
                             <span className="text-xs font-medium text-primary-600">
                               78% complete
                             </span>
@@ -283,9 +283,9 @@ const HybridDashboard: React.FC = () => {
                 </div>
                 
                 <div className="mt-6 card overflow-hidden  bg-opacity-80">
-                  <div className="border-b border-gray-200 bg-white px-6 py-4">
+                  <div className="border-b border-gray-200 bg-primary-200 px-6 py-4">
                     <h2 className="text-lg font-medium text-gray-900">Mentorship Requests</h2>
-                    <p className="text-sm text-gray-500">Students waiting for your guidance</p>
+                    <p className="text-sm text-grey-700">Students waiting for your guidance</p>
                   </div>
                   <div className="p-6">
                     <div className="flex items-center">
@@ -296,7 +296,7 @@ const HybridDashboard: React.FC = () => {
                       />
                       <div className="ml-4">
                         <h3 className="text-sm font-medium text-gray-900">Brandon Taylor</h3>
-                        <p className="text-xs text-gray-500">React Native</p>
+                        <p className="text-xs text-grey-700">React Native</p>
                       </div>
                     </div>
                     <p className="mt-3 text-sm text-gray-600">
@@ -312,9 +312,9 @@ const HybridDashboard: React.FC = () => {
               
               <div>
                 <div className="card overflow-hidden bg-opacity-80">
-                  <div className="border-b border-gray-200 bg-white px-6 py-4">
+                  <div className="border-b border-gray-200 bg-primary-200 px-6 py-4">
                     <h2 className="text-lg font-medium text-gray-900">Your Teaching Resources</h2>
-                    <p className="text-sm text-gray-500">Materials you've shared with mentees</p>
+                    <p className="text-sm text-grey-700">Materials you've shared with mentees</p>
                   </div>
                   <div className="divide-y divide-gray-200">
                     <div className="p-6">
@@ -324,7 +324,7 @@ const HybridDashboard: React.FC = () => {
                         </div>
                         <div className="ml-4">
                           <h3 className="text-sm font-medium text-gray-900">JavaScript Fundamentals</h3>
-                          <p className="text-xs text-gray-500">Course Materials • 12 lessons</p>
+                          <p className="text-xs text-grey-700">Course Materials • 12 lessons</p>
                         </div>
                       </div>
                       <div className="mt-4 flex justify-end">
@@ -342,7 +342,7 @@ const HybridDashboard: React.FC = () => {
                   </div>
                   <div className="mt-4 space-y-3 ">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500">Avg. Rating</span>
+                      <span className="text-sm text-grey-700">Avg. Rating</span>
                       <div className="flex items-center  ">
                         <span className="text-sm font-medium text-gray-900">4.9</span>
                         <svg className="ml-1 h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
@@ -351,15 +351,15 @@ const HybridDashboard: React.FC = () => {
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500">Students Helped</span>
+                      <span className="text-sm text-grey-700">Students Helped</span>
                       <span className="text-sm font-medium text-gray-900">24</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500">Resources Shared</span>
+                      <span className="text-sm text-grey-700">Resources Shared</span>
                       <span className="text-sm font-medium text-gray-900">37</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500">Hours Mentored</span>
+                      <span className="text-sm text-grey-700">Hours Mentored</span>
                       <span className="text-sm font-medium text-gray-900">128</span>
                     </div>
                   </div>
