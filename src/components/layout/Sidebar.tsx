@@ -99,7 +99,7 @@ const Sidebar: React.FC = () => {
         animate={isSidebarOpen ? 'open' : 'closed'}
         variants={sidebarVariants}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="fixed inset-y-0 left-0 z-50 w-64 flex-col overflow-y-auto border-r border-gray-200 bg-white pb-4 pt-5 lg:translate-x-0 lg:flex"
+        className="fixed inset-y-0 left-0 z-50 w-64 flex-col overflow-y-auto border-r border-gray-200 bg-primary-200 pb-4 pt-5 lg:translate-x-0 lg:flex"
       >
         <div className="px-4 pb-4 border-b border-gray-200">
           <div className="flex items-center justify-between">
@@ -166,7 +166,7 @@ const Sidebar: React.FC = () => {
               />
               
               <SidebarLink
-                to="/mentor-assignments"
+                to="/assignments"
                 icon={<GraduationCap size={18} />}
                 label="Assignments"
                 isActive={location.pathname === '/mentor-assignments'}
@@ -211,12 +211,7 @@ const Sidebar: React.FC = () => {
             isActive={location.pathname === '/chat'}
           />
           
-          <SidebarLink
-            to="/leaderboard"
-            icon={<Award size={18} />}
-            label="Leaderboard"
-            isActive={location.pathname === '/leaderboard'}
-          />
+         
         </div>
       </motion.aside>
     </>

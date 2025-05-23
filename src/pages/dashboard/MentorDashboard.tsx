@@ -91,7 +91,7 @@ const MentorDashboard: React.FC = () => {
             color: 'bg-emerald-50 text-emerald-700',
           },
         ].map((stat, index) => (
-          <div key={index} className="card overflow-hidden">
+          <div key={index} className="card overflow-hidden animate-slide-in">
             <div className="p-6">
               <div className="flex items-center">
                 <div className={`rounded-md p-2 ${stat.color.split(' ')[0]}`}>
@@ -107,10 +107,10 @@ const MentorDashboard: React.FC = () => {
         ))}
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
-        <div className="lg:col-span-2">
-          <div className="card overflow-hidden">
-            <div className="border-b border-gray-200 bg-white px-6 py-4">
+      <div className="mt-8 grid grid-cols-1 gap-8  lg:grid-cols-3">
+        <div className="lg:col-span-2 ">
+          <div className="card overflow-hidden bg-white bg-opacity-80  animate-fade-in">
+            <div className="border-b border-gray-200 bg-white bg-opacity-80 px-6 py-4">
               <h2 className="text-lg font-medium text-gray-900">Your Mentees</h2>
               <p className="text-sm text-gray-500">Manage and track your mentees' progress</p>
             </div>
@@ -164,8 +164,8 @@ const MentorDashboard: React.FC = () => {
         </div>
 
         <div>
-          <div className="card overflow-hidden">
-            <div className="border-b border-gray-200 bg-white px-6 py-4">
+          <div className="card overflow-hidden bg-opacity-80 animate-slide-in">
+            <div className="border-b border-gray-200 bg-white  px-6 py-4">
               <h2 className="text-lg font-medium text-gray-900">Mentee Requests</h2>
               <p className="text-sm text-gray-500">Students waiting for your guidance</p>
             </div>

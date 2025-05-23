@@ -103,7 +103,7 @@ const HybridDashboard: React.FC = () => {
           {activeRole === 'student' ? (
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               <div className="lg:col-span-2">
-                <div className="card overflow-hidden">
+                <div className="card overflow-hidden bg-opacity-80">
                   <div className="border-b border-gray-200 bg-white px-6 py-4">
                     <h2 className="text-lg font-medium text-gray-900">Your Learning Journey</h2>
                     <p className="text-sm text-gray-500">Current courses and progress</p>
@@ -141,7 +141,7 @@ const HybridDashboard: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="mt-6 card overflow-hidden">
+                <div className="mt-6 card overflow-hidden  bg-opacity-80">
                   <div className="border-b border-gray-200 bg-white px-6 py-4">
                     <h2 className="text-lg font-medium text-gray-900">Recommended Mentors</h2>
                     <p className="text-sm text-gray-500">Based on your interests</p>
@@ -177,7 +177,7 @@ const HybridDashboard: React.FC = () => {
               </div>
               
               <div>
-                <div className="card overflow-hidden">
+                <div className="card overflow-hidden  bg-opacity-80">
                   <div className="border-b border-gray-200 bg-white px-6 py-4">
                     <h2 className="text-lg font-medium text-gray-900">Premium Resources</h2>
                     <p className="text-sm text-gray-500">Unlock with Chain-Mines points</p>
@@ -208,20 +208,20 @@ const HybridDashboard: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="mt-6 card p-6">
+                <div className="mt-6 card p-6 ">
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-medium text-gray-900">Upcoming Events</h3>
                     <span className="badge badge-secondary">2 events</span>
                   </div>
-                  <div className="mt-4 space-y-4">
-                    <div className="rounded-lg border border-gray-200 p-4">
+                  <div className="mt-4 space-y-4 ">
+                    <div className="rounded-lg border border-gray-200 p-4  bg-opacity-80">
                       <p className="text-sm font-medium text-gray-900">Web Development Workshop</p>
                       <p className="mt-1 text-xs text-gray-500">Friday, 3:00 PM - 5:00 PM</p>
                       <div className="mt-3 flex justify-end">
                         <button className="btn btn-outline !py-1 !px-3 text-xs">Add to Calendar</button>
                       </div>
                     </div>
-                    <div className="rounded-lg border border-gray-200 p-4">
+                    <div className="rounded-lg border border-gray-200 p-4  bg-opacity-80">
                       <p className="text-sm font-medium text-gray-900">AI Ethics Discussion</p>
                       <p className="mt-1 text-xs text-gray-500">Saturday, 2:00 PM - 3:30 PM</p>
                       <div className="mt-3 flex justify-end">
@@ -236,7 +236,7 @@ const HybridDashboard: React.FC = () => {
             // Mentor View
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               <div className="lg:col-span-2">
-                <div className="card overflow-hidden">
+                <div className="card overflow-hidden  bg-opacity-80">
                   <div className="border-b border-gray-200 bg-white px-6 py-4">
                     <h2 className="text-lg font-medium text-gray-900">Your Mentees</h2>
                     <p className="text-sm text-gray-500">Students you are currently mentoring</p>
@@ -282,7 +282,7 @@ const HybridDashboard: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="mt-6 card overflow-hidden">
+                <div className="mt-6 card overflow-hidden  bg-opacity-80">
                   <div className="border-b border-gray-200 bg-white px-6 py-4">
                     <h2 className="text-lg font-medium text-gray-900">Mentorship Requests</h2>
                     <p className="text-sm text-gray-500">Students waiting for your guidance</p>
@@ -311,7 +311,7 @@ const HybridDashboard: React.FC = () => {
               </div>
               
               <div>
-                <div className="card overflow-hidden">
+                <div className="card overflow-hidden bg-opacity-80">
                   <div className="border-b border-gray-200 bg-white px-6 py-4">
                     <h2 className="text-lg font-medium text-gray-900">Your Teaching Resources</h2>
                     <p className="text-sm text-gray-500">Materials you've shared with mentees</p>
@@ -336,14 +336,14 @@ const HybridDashboard: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="mt-6 card p-6">
-                  <div className="flex items-center justify-between">
+                <div className="mt-6 card p-6  bg-opacity-80">
+                  <div className="flex items-center justify-between ">
                     <h3 className="text-lg font-medium text-gray-900">Mentor Stats</h3>
                   </div>
-                  <div className="mt-4 space-y-3">
+                  <div className="mt-4 space-y-3 ">
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-500">Avg. Rating</span>
-                      <div className="flex items-center">
+                      <div className="flex items-center  ">
                         <span className="text-sm font-medium text-gray-900">4.9</span>
                         <svg className="ml-1 h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />

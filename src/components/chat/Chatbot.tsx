@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, User, Loader2 } from 'lucide-react';
+import { Send, Loader2 } from 'lucide-react';
 
 interface Message {
   id: string;
@@ -53,36 +53,42 @@ const Chatbot: React.FC = () => {
 
     setMessages(prev => [...prev, loadingMessage]);
 
-    // Simulate AI response delay
-    setTimeout(() => {
-      setIsLoading(false);
-      setMessages(prev => 
+    try {
+      const response = await fetch('http://localhost:5000/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: userMessage.text }),
+      });
+
+      const data = await response.json();
+      const aiText = data.reply || "Sorry, I couldn't get a response from the AI.";
+
+      setMessages(prev =>
         prev.filter(msg => msg.sender !== 'loading').concat({
           id: Date.now().toString(),
-          text: getAIResponse(input),
+          text: aiText,
           sender: 'ai',
           timestamp: new Date(),
         })
       );
 
-      // Show escalate button randomly to simulate AI not knowing answer
-      if (Math.random() > 0.7) {
+      if (aiText.toLowerCase().includes('not sure')) {
         setShowEscalateButton(true);
       }
-    }, 1500);
-  };
-
-  const getAIResponse = (userInput: string): string => {
-    const responses = [
-      "That's a great question! Let me help you with that.",
-      "Based on my knowledge, here's what I can tell you...",
-      "I understand your query. Here's what I know about that topic.",
-      "Let me provide you with some information on that.",
-      "I'm happy to help with that question.",
-      "I'm not entirely sure about that. Would you like me to connect you with a mentor?",
-    ];
-
-    return responses[Math.floor(Math.random() * responses.length)];
+    } catch (error) {
+      setMessages(prev =>
+        prev.filter(msg => msg.sender !== 'loading').concat({
+          id: Date.now().toString(),
+          text: "There was an error connecting to the AI service.",
+          sender: 'ai',
+          timestamp: new Date(),
+        })
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleEscalateToMentor = () => {

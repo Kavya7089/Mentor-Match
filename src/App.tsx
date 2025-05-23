@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { UIProvider } from './contexts/UIContext';
@@ -16,6 +15,11 @@ import PrivateRoute from './components/routes/PrivateRoute';
 import PublicRoute from './components/routes/PublicRoute';
 import NotFound from './pages/NotFound';
 import ProfilePage from './components/profile/ProfilePage';
+import MenteeRequests from './pages/MenteeRequests';
+import Assignments from './pages/Assignments';
+import AvailableMentors from './pages/AvailableMentors';
+import MyAssignments from './pages/MyAssignments';
+
 function App() {
   return (
     <Router>
@@ -70,6 +74,28 @@ function App() {
             <Route path="/chat" element={
               <PrivateRoute>
                 <ChatBot />
+              </PrivateRoute>
+            } />
+          
+            <Route path="/mentee-requests" element={
+              <PrivateRoute>
+                <MenteeRequests />
+              </PrivateRoute>
+            } />
+            <Route path="/assignments" element={
+              <PrivateRoute>
+                <Assignments />
+              </PrivateRoute>
+            } />
+           
+            <Route path="/available-mentors" element={
+              <PrivateRoute>
+                <AvailableMentors />
+              </PrivateRoute>
+            } />
+            <Route path="/my-assignments" element={
+              <PrivateRoute>
+                <MyAssignments />
               </PrivateRoute>
             } />
             

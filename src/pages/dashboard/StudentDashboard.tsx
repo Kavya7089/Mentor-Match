@@ -119,7 +119,7 @@ const StudentDashboard: React.FC = () => {
             color: 'bg-emerald-50 text-emerald-700',
           },
         ].map((stat, index) => (
-          <div key={index} className="card overflow-hidden">
+          <div key={index} className="card overflow-hidden animate-slide-in ">
             <div className="p-6">
               <div className="flex items-center">
                 <div className={`rounded-md p-2 ${stat.color.split(' ')[0]}`}>
@@ -137,7 +137,7 @@ const StudentDashboard: React.FC = () => {
 
       <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <div className="card overflow-hidden">
+          <div className="card overflow-hidden bg-opacity-80 animate-fade-in">
             <div className="border-b border-gray-200 bg-white px-6 py-4">
               <h2 className="text-lg font-medium text-gray-900">Your Learning Journey</h2>
               <p className="text-sm text-gray-500">Current courses and progress</p>
@@ -153,7 +153,7 @@ const StudentDashboard: React.FC = () => {
                         className="h-full w-full object-cover"
                       />
                     </div>
-                    <div className="sm:ml-6 sm:flex-1">
+                    <div className="sm:ml-6 sm:flex-1 ">
                       <div className="mb-4">
                         <h3 className="text-lg font-medium text-gray-900">{course.title}</h3>
                         <p className="mt-1 text-sm text-gray-500">Mentor: {course.mentor}</p>
@@ -195,7 +195,7 @@ const StudentDashboard: React.FC = () => {
             </div>
           </div>
           
-          <div className="mt-6 card overflow-hidden">
+          <div className="mt-6 card overflow-hidden bg-opacity-80 animate-slide-in">
             <div className="border-b border-gray-200 bg-white px-6 py-4">
               <h2 className="text-lg font-medium text-gray-900">Top Mentors</h2>
               <p className="text-sm text-gray-500">Connect with expert mentors in your field</p>
@@ -260,7 +260,7 @@ const StudentDashboard: React.FC = () => {
         </div>
 
         <div>
-          <div className="card overflow-hidden">
+          <div className="card overflow-hidden  bg-opacity-80">
             <div className="border-b border-gray-200 bg-white px-6 py-4">
               <h2 className="text-lg font-medium text-gray-900">Recommended Resources</h2>
               <p className="text-sm text-gray-500">Based on your learning goals</p>
@@ -273,7 +273,7 @@ const StudentDashboard: React.FC = () => {
                       resource.type === 'E-Book' 
                         ? 'bg-accent-100 text-accent-700' 
                         : resource.type === 'Video Course'
-                          ? 'bg-highlight-100 text-highlight-700'
+                          ? 'bg-highlight-100 text-highlight-200'
                           : 'bg-emerald-100 text-emerald-700'
                     }`}>
                       <BookMarked size={16} />
@@ -299,7 +299,7 @@ const StudentDashboard: React.FC = () => {
                         resource.premium 
                           ? user.points >= resource.points
                             ? 'btn btn-highlight'
-                            : 'btn btn-outline text-gray-400 cursor-not-allowed'
+                            : 'btn btn-outline text-black cursor-not-allowed'
                           : 'btn btn-primary'
                       }`}
                       disabled={resource.premium && user.points < resource.points}

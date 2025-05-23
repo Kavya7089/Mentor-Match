@@ -65,24 +65,49 @@ const ChatBot: React.FC = () => {
     setInput('');
     setIsLoading(true);
 
-    // Simulate AI response delay
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      // Call your backend API that connects to Groq
+      const response = await fetch('http://localhost:5000/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: userMessage.text }),
+      });
+
+      const data = await response.json();
+      const aiText = data.reply || "Sorry, I couldn't get a response from the AI.";
+
       setMessages(prev => [
         ...prev,
         {
           id: Date.now().toString(),
-          text: getAIResponse(input),
+          text: aiText,
           sender: 'ai',
           timestamp: new Date(),
         },
       ]);
 
-      // Show escalate button randomly to simulate AI not knowing answer
-      if (Math.random() > 0.7) {
+      // Show escalate button if AI can't answer
+      if (
+        aiText.toLowerCase().includes('not sure') ||
+        aiText.toLowerCase().includes('connect you with a mentor')
+      ) {
         setShowEscalateButton(true);
       }
-    }, 1500);
+    } catch (error) {
+      setMessages(prev => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          text: "There was an error connecting to the AI service.",
+          sender: 'ai',
+          timestamp: new Date(),
+        },
+      ]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const getAIResponse = (userInput: string): string => {

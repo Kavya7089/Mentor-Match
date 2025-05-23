@@ -7,6 +7,6 @@ const Logo: React.FC = () => {
       <BookOpen size={20} />
     </div>
   );
-};
+};  
 
 export default Logo;
