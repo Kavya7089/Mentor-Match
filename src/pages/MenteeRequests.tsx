@@ -93,8 +93,8 @@ const MenteeRequests: React.FC = () => {
       description="View and manage requests from mentees."
     >
       <div
-        className="max-w-6xl mx-auto mt-8 p-6 bg-gradient-to-br from-primary-100 to-primary-50 rounded-xl shadow-lg"
-        style={{  overflowY: 'auto' }}
+        className="max-w-6xl mx-auto mt-8 p-6 bg-primary-50 bg-opacity-65 rounded-xl shadow-lg"
+        
       >
         {/* Stats & Motivation */}
         <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -136,7 +136,7 @@ const MenteeRequests: React.FC = () => {
             {requests.map(req => (
               <li
                 key={req.id}
-                className={`flex flex-col md:flex-row md:items-center md:justify-between bg-white border-l-4 ${
+                className={`flex flex-col md:flex-row md:items-center md:justify-between bg-white bg-opacity-75 border-l-4 ${
                   req.status === 'accepted'
                     ? 'border-green-400'
                     : req.status === 'rejected'

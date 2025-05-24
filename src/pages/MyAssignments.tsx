@@ -74,7 +74,7 @@ const MyAssignments: React.FC = () => {
       title="My Assignments"
       description="View, upload, and manage your assignments."
     >
-      <div className="max-w-3xl mx-auto mt-8 p-6 bg-gradient-to-br from-primary-100 to-primary-50 rounded-xl shadow-lg">
+      <div className="max-w-3xl mx-auto mt-8 p-6 bg-primary-50 bg-opacity-65 rounded-xl shadow-lg">
         {/* Stats & Progress */}
         <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="flex items-center gap-6">
@@ -134,7 +134,7 @@ const MyAssignments: React.FC = () => {
             {assignments.map(a => (
               <li
                 key={a.id}
-                className={`flex flex-col md:flex-row md:items-center md:justify-between bg-white border-l-4 ${
+                className={`flex flex-col md:flex-row md:items-center md:justify-between bg-white bg-opacity-75 border-l-4 ${
                   a.status === 'completed'
                     ? 'border-green-400'
                     : 'border-yellow-400'

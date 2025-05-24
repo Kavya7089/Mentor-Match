@@ -103,7 +103,7 @@ const HybridDashboard: React.FC = () => {
           {activeRole === 'student' ? (
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               <div className="lg:col-span-2">
-                <div className="card overflow-hidden bg-primary-200 bg-opacity-80">
+                <div className="card overflow-hidden bg-white bg-opacity-70">
                   <div className="border-b border-primary-200 bg-primary-700 px-6 py-4">
                     <h2 className="text-lg font-medium text-white">Your Learning Journey</h2>
                     <p className="text-sm text-gray-400">Current courses and progress</p>
@@ -141,7 +141,7 @@ const HybridDashboard: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="mt-6 card overflow-hidden bg-primary-200  bg-opacity-80">
+                <div className="mt-6 card overflow-hidden bg-white  bg-opacity-70">
                   <div className="border-b border-gray-200 bg-primary-200 px-6 py-4">
                     <h2 className="text-lg font-medium text-gray-900">Recommended Mentors</h2>
                     <p className="text-sm text-grey-700">Based on your interests</p>
@@ -177,7 +177,7 @@ const HybridDashboard: React.FC = () => {
               </div>
               
               <div>
-                <div className="card overflow-hidden bg-primary-200 bg-opacity-80">
+                <div className="card overflow-hidden bg-white bg-opacity-70">
                   <div className="border-b border-gray-200 bg-primary-200 px-6 py-4">
                     <h2 className="text-lg font-medium text-gray-900">Premium Resources</h2>
                     <p className="text-sm text-grey-700">Unlock with Chain-Mines points</p>
@@ -208,20 +208,20 @@ const HybridDashboard: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="mt-6 card p-6 bg-primary-100 ">
+                <div className="mt-6 card p-6 bg-primary-100 bg-opacity-70 ">
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-medium text-gray-900">Upcoming Events</h3>
                     <span className="badge badge-secondary">2 events</span>
                   </div>
                   <div className="mt-4 space-y-4 ">
-                    <div className="rounded-lg border border-gray-200 p-4 bg-primary-200 bg-opacity-80">
+                    <div className="rounded-lg border border-gray-200 p-4 bg-white bg-opacity-70">
                       <p className="text-sm font-medium text-gray-900">Web Development Workshop</p>
                       <p className="mt-1 text-xs text-grey-700">Friday, 3:00 PM - 5:00 PM</p>
                       <div className="mt-3 flex justify-end">
                         <button className="btn btn-outline !py-1 !px-3 text-xs">Add to Calendar</button>
                       </div>
                     </div>
-                    <div className="rounded-lg border border-gray-200 p-4 bg-primary-200 bg-opacity-80">
+                    <div className="rounded-lg border border-gray-200 p-4 bg-white bg-opacity-70">
                       <p className="text-sm font-medium text-gray-900">AI Ethics Discussion</p>
                       <p className="mt-1 text-xs text-grey-700">Saturday, 2:00 PM - 3:30 PM</p>
                       <div className="mt-3 flex justify-end">
@@ -237,9 +237,9 @@ const HybridDashboard: React.FC = () => {
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               <div className="lg:col-span-2">
                 <div className="card overflow-hidden  bg-opacity-80">
-                  <div className="border-b border-gray-200 bg-primary-200 px-6 py-4">
-                    <h2 className="text-lg font-medium text-gray-900">Your Mentees</h2>
-                    <p className="text-sm text-grey-700">Students you are currently mentoring</p>
+                  <div className="border-b border-gray-200 bg-primary-700 px-6 py-4">
+                    <h2 className="text-lg font-medium text-white">Your Mentees</h2>
+                    <p className="text-sm text-gray-400">Students you are currently mentoring</p>
                   </div>
                   <div className="divide-y divide-gray-200">
                     <div className="p-6">

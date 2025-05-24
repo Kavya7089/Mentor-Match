@@ -86,7 +86,7 @@ const Assignments: React.FC = () => {
       title="Assignments (Mentor)"
       description="Create and manage assignments for your students."
     >
-      <div className="max-w-3xl mx-auto mt-8 p-6 bg-gradient-to-br from-primary-100 to-primary-50 rounded-xl shadow-lg">
+      <div className="max-w-3xl mx-auto mt-8 p-6 bg-primary-50 bg-opacity-65 rounded-xl shadow-lg">
         {/* Stats & Progress */}
         <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="flex items-center gap-6">
@@ -134,7 +134,7 @@ const Assignments: React.FC = () => {
         </div>
         {showForm && (
           <form
-            className="mb-8 bg-white p-6 rounded-lg shadow flex flex-col gap-4"
+            className="mb-8 bg-white bg-opacity-75 p-6 rounded-lg shadow flex flex-col gap-4"
             onSubmit={handleCreateAssignment}
           >
             <div>
@@ -184,7 +184,7 @@ const Assignments: React.FC = () => {
             {assignments.map(a => (
               <li
                 key={a.id}
-                className={`flex flex-col md:flex-row md:items-center md:justify-between bg-white border-l-4 ${
+                className={`flex flex-col md:flex-row md:items-center md:justify-between bg-white bg-opacity-75 border-l-4 ${
                   a.status === 'completed'
                     ? 'border-green-400'
                     : 'border-yellow-400'

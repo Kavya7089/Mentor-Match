@@ -99,7 +99,7 @@ const AvailableMentors: React.FC = () => {
       title="Available Mentors"
       description="Browse and request mentorship from available mentors."
     >
-      <div className="max-w-6xl mx-auto mt-8 p-6 bg-gradient-to-br from-primary-100 to-primary-50 rounded-xl shadow-lg">
+      <div className="max-w-6xl mx-auto mt-8 p-6 bg-primary-50 bg-opacity-65 rounded-xl shadow-lg">
         {/* Stats & Motivation */}
         <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="flex items-center gap-6">
@@ -127,7 +127,7 @@ const AvailableMentors: React.FC = () => {
           {mentors.map(mentor => (
             <div
               key={mentor.id}
-              className={`flex flex-col items-center p-6 bg-white  rounded-lg shadow-md border-t-4 transition-all hover:shadow-xl ${
+              className={`flex flex-col items-center p-6 bg-white  bg-opacity-75 rounded-lg shadow-md border-t-4 transition-all hover:shadow-xl ${
                 mentor.available ? 'border-green-400' : 'border-gray-300 opacity-80'
               }`}
             >
