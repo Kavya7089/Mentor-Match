@@ -1,22 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Loader2 } from 'lucide-react';
 
-interface Message {
-  id: string;
-  text: string;
-  sender: 'user' | 'ai' | 'loading';
-  timestamp: Date;
-}
-
 const Chatbot: React.FC = () => {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      text: "Hello! I'm your AI assistant. How can I help you today?",
-      sender: 'ai',
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<{ sender: 'user' | 'ai'; text: string }[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showEscalateButton, setShowEscalateButton] = useState(false);
@@ -33,57 +19,37 @@ const Chatbot: React.FC = () => {
   const handleSend = async () => {
     if (!input.trim()) return;
 
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      text: input,
-      sender: 'user',
-      timestamp: new Date(),
-    };
-
-    setMessages(prev => [...prev, userMessage]);
+    setMessages(msgs => [...msgs, { sender: 'user', text: input }]);
     setInput('');
     setIsLoading(true);
 
-    const loadingMessage: Message = {
-      id: `loading-${Date.now()}`,
-      text: '',
-      sender: 'loading',
-      timestamp: new Date(),
-    };
-
-    setMessages(prev => [...prev, loadingMessage]);
+    const loadingMessage = { id: `loading-${Date.now()}`, text: '', sender: 'loading' };
+    setMessages(msgs => [...msgs, loadingMessage]);
 
     try {
-      const response = await fetch('http://localhost:5000/api/chat', {
+      const response = await fetch('http://localhost:5000/api/groq/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: userMessage.text }),
+        body: JSON.stringify({ prompt: input }),
       });
 
       const data = await response.json();
-      const aiText = data.reply || "Sorry, I couldn't get a response from the AI.";
+      const aiText = data.response || "Sorry, I couldn't get a response from the AI.";
 
-      setMessages(prev =>
-        prev.filter(msg => msg.sender !== 'loading').concat({
-          id: Date.now().toString(),
-          text: aiText,
-          sender: 'ai',
-          timestamp: new Date(),
-        })
+      setMessages(msgs =>
+        msgs.filter(msg => msg.sender !== 'loading').concat({ sender: 'ai', text: aiText })
       );
 
       if (aiText.toLowerCase().includes('not sure')) {
         setShowEscalateButton(true);
       }
     } catch (error) {
-      setMessages(prev =>
-        prev.filter(msg => msg.sender !== 'loading').concat({
-          id: Date.now().toString(),
-          text: "There was an error connecting to the AI service.",
+      setMessages(msgs =>
+        msgs.filter(msg => msg.sender !== 'loading').concat({
           sender: 'ai',
-          timestamp: new Date(),
+          text: "There was an error connecting to the AI service.",
         })
       );
     } finally {
@@ -92,13 +58,11 @@ const Chatbot: React.FC = () => {
   };
 
   const handleEscalateToMentor = () => {
-    setMessages(prev => [
-      ...prev,
+    setMessages(msgs => [
+      ...msgs,
       {
-        id: Date.now().toString(),
-        text: "I've sent a request to our available mentors. Someone will connect with you shortly to help answer your question in more detail.",
         sender: 'ai',
-        timestamp: new Date(),
+        text: "I've sent a request to our available mentors. Someone will connect with you shortly to help answer your question in more detail.",
       },
     ]);
     setShowEscalateButton(false);
@@ -108,50 +72,26 @@ const Chatbot: React.FC = () => {
     <div className="flex h-full flex-col">
       <div className="flex-1 overflow-y-auto p-4">
         <div className="space-y-4">
-          {messages.map(message => (
-            <div
-              key={message.id}
-              className={`flex ${
-                message.sender === 'user' ? 'justify-end' : 'justify-start'
-              }`}
-            >
-              {message.sender === 'loading' ? (
-                <div className="flex items-center space-x-2 rounded-lg bg-gray-100 px-4 py-2">
-                  <Loader2 size={16} className="animate-spin text-gray-500" />
-                  <span className="text-gray-500">Thinking...</span>
-                </div>
-              ) : (
-                <div
-                  className={`max-w-[80%] rounded-lg px-4 py-2 ${
-                    message.sender === 'user'
-                      ? 'bg-primary-600 text-white'
-                      : 'bg-gray-100 text-gray-800'
-                  }`}
-                >
-                  <p className="text-sm">{message.text}</p>
-                  <p className="mt-1 text-right text-xs opacity-70">
-                    {message.timestamp.toLocaleTimeString([], {
-                      hour: '2-digit',
-                      minute: '2-digit',
-                    })}
-                  </p>
-                </div>
-              )}
-            </div>
-          ))}
-          <div ref={messagesEndRef} />
-        </div>
-
-        {showEscalateButton && (
-          <div className="my-4 flex justify-center">
-            <button
-              onClick={handleEscalateToMentor}
-              className="rounded-full bg-highlight-500 px-4 py-2 text-sm font-medium text-white hover:bg-highlight-600 focus:outline-none focus:ring-2 focus:ring-highlight-500 focus:ring-offset-2"
-            >
-              Connect with a mentor
-            </button>
+          <div className="chat-window">
+            {messages.map((msg, idx) => (
+              <div key={idx} className={msg.sender === 'user' ? 'user-msg' : 'ai-msg'}>
+                {msg.text}
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
           </div>
-        )}
+
+          {showEscalateButton && (
+            <div className="my-4 flex justify-center">
+              <button
+                onClick={handleEscalateToMentor}
+                className="rounded-full bg-highlight-500 px-4 py-2 text-sm font-medium text-white hover:bg-highlight-600 focus:outline-none focus:ring-2 focus:ring-highlight-500 focus:ring-offset-2"
+              >
+                Connect with a mentor
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="border-t border-gray-200 p-4">

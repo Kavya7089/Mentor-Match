@@ -14,14 +14,7 @@ interface Message {
 
 const ChatBot: React.FC = () => {
   const { user } = useAuth();
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      text: "Hello! I'm your AI learning assistant. How can I help you today?",
-      sender: 'ai',
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showEscalateButton, setShowEscalateButton] = useState(false);
@@ -53,61 +46,28 @@ const ChatBot: React.FC = () => {
 
   const handleSend = async () => {
     if (!input.trim()) return;
-
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      text: input,
-      sender: 'user',
-      timestamp: new Date(),
-    };
-
-    setMessages(prev => [...prev, userMessage]);
+    setMessages(msgs => [
+      ...msgs,
+      {
+        id: Date.now().toString(),
+        text: input,
+        sender: 'user',
+        timestamp: new Date(),
+        name: user?.displayName || 'You',
+        avatar: user?.photoURL || undefined,
+      },
+    ]);
     setInput('');
-    setIsLoading(true);
-
-    try {
-      // Call your backend API that connects to Groq
-      const response = await fetch('http://localhost:5000/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: userMessage.text }),
-      });
-
-      const data = await response.json();
-      const aiText = data.reply || "Sorry, I couldn't get a response from the AI.";
-
-      setMessages(prev => [
-        ...prev,
-        {
-          id: Date.now().toString(),
-          text: aiText,
-          sender: 'ai',
-          timestamp: new Date(),
-        },
-      ]);
-
-      // Show escalate button if AI can't answer
-      if (
-        aiText.toLowerCase().includes('not sure') ||
-        aiText.toLowerCase().includes('connect you with a mentor')
-      ) {
-        setShowEscalateButton(true);
-      }
-    } catch (error) {
-      setMessages(prev => [
-        ...prev,
-        {
-          id: Date.now().toString(),
-          text: "There was an error connecting to the AI service.",
-          sender: 'ai',
-          timestamp: new Date(),
-        },
-      ]);
-    } finally {
-      setIsLoading(false);
-    }
+    const aiReply = await askGroq(input);
+    setMessages(msgs => [
+      ...msgs,
+      {
+        id: (Date.now() + 1).toString(),
+        text: aiReply,
+        sender: 'ai',
+        timestamp: new Date(),
+      },
+    ]);
   };
 
   const getAIResponse = (userInput: string): string => {
@@ -181,6 +141,20 @@ const ChatBot: React.FC = () => {
     ]);
     setShowEscalateButton(false);
   };
+
+  async function askGroq(prompt: string): Promise<string> {
+    try {
+      const response = await fetch('http://localhost:5000/api/groq/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt }),
+      });
+      const data = await response.json();
+      return data.response || "No response from Groq AI.";
+    } catch (error) {
+      return "Error contacting Groq AI.";
+    }
+  }
 
   return (
     <DashboardLayout title="AI Chat Assistant" description="Get help with your questions and learning journey">
