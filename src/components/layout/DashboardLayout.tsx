@@ -29,7 +29,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       }}
     >
       {/* Overlay for better readability */}
-      <div className="absolute inset-0 bg-primary-600 bg-opacity-70 pointer-events-none z-0"></div>
+      <div className="absolute inset-0 pointer-events-none z-0"></div>
 
       <div className="relative z-10">
         <Navbar />
@@ -41,7 +41,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           }`}
         >
           {(title || description) && (
-            <div className="bg-white bg-opacity-45">
+            <div className="bg-primary-600 bg-opacity-45">
               <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                 {title && <h1 className="text-2xl font-semibold text-gray-900">{title}</h1>}
                 {description && <p className="mt-1 text-sm text-gray-200">{description}</p>}
