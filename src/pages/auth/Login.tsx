@@ -3,6 +3,8 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BookOpen, Mail, Lock, ArrowRight, RotateCw } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import side from '../../assets/sideimg.png'; 
+import Logo from '../../components/layout/Logo';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -34,12 +36,12 @@ const Login: React.FC = () => {
   return (
     <div className="flex min-h-screen">
       {/* Left Side - Form */}
-      <div className="flex w-full flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:w-1/2">
+      <div className="flex w-full bg-primary-200 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:w-1/2">
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div className="text-center">
             <Link to="/" className="inline-flex items-center">
-              <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary-600 text-white">
-                <BookOpen size={24} />
+              <div className="flex h-10 w-10 items-center justify-center ">
+                <Logo />
               </div>
               <span className="ml-2 text-xl font-bold text-gray-900">MentorMatch</span>
             </Link>
@@ -191,7 +193,7 @@ const Login: React.FC = () => {
         ></motion.div>
         <img
           className="absolute inset-0 h-full w-full object-cover"
-          src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg"
+          src={side}
           alt="People working on laptops"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-white">

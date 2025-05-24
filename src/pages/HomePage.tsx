@@ -12,6 +12,15 @@ import {
   UserCheck,
 } from 'lucide-react';
 import Navbar from '../components/layout/NavbarHome';
+import main from '../assets/mainimg.png'
+import Logo from '../components/layout/Logo';
+import stu from '../assets/student.png';
+import mentor from '../assets/mentor.png';
+import hybrid from '../assets/hybrid.png';
+import heroBg from '../assets/homebg.png'; // Add your image to src/assets and adjust the name/path if needed
+import statsBg from '../assets/cardp.png'; // Place your image in src/assets and adjust the name/path if needed
+ // Place your image in src/assets and adjust the name/path if needed
+
 
 const stats = [
   { icon: <Users className="h-6 w-6 text-primary-600" />, label: 'Mentors', value: '120+' },
@@ -64,7 +73,7 @@ const roles = [
     title: 'Join as a Mentor',
     description:
       'Share your knowledge, guide students, and make a difference in their learning journey.',
-    image: 'https://images.pexels.com/photos/5212339/pexels-photo-5212339.jpeg',
+    image: mentor,
     linkText: 'Start Mentoring',
     link: '/register?role=mentor',
   },
@@ -72,7 +81,7 @@ const roles = [
     title: 'Join as a Student',
     description:
       'Connect with expert mentors, access quality resources, and accelerate your learning.',
-    image: 'https://images.pexels.com/photos/5212703/pexels-photo-5212703.jpeg',
+    image: stu,
     linkText: 'Start Learning',
     link: '/register?role=student',
   },
@@ -80,7 +89,7 @@ const roles = [
     title: 'Join as Both',
     description:
       'Learn from experts while sharing your own expertise in a hybrid role that maximizes growth.',
-    image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg',
+    image: hybrid,
     linkText: 'Get Started',
     link: '/register?role=hybrid',
   },
@@ -94,12 +103,22 @@ const HomePage: React.FC = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="relative py-28 md:py-36">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div
+        className="relative py-28 md:py-36"
+        style={{
+          backgroundImage: `url(${heroBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-primary-50 bg-opacity-70 z-0"></div>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
           <div className="absolute -bottom-48 right-0 h-96 w-96 translate-x-1/3 rounded-full bg-accent-500 opacity-20 blur-3xl"></div>
           <div className="absolute -left-24 -top-24 h-96 w-96 rounded-full bg-highlight-500 opacity-20 blur-3xl"></div>
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-20">
           <div className="lg:flex lg:items-center lg:space-x-12">
             <div className="lg:w-1/2">
               <h1 className="text-4xl font-bold tracking-tight text-primary-900 sm:text-5xl xl:text-6xl">
@@ -128,7 +147,7 @@ const HomePage: React.FC = () => {
                     </Link>
                     <Link
                       to="/login"
-                      className="btn btn-outline border-primary-600 px-6 py-3 text-base font-medium text-primary-700 hover:bg-primary-100"
+                      className="btn btn-outline border-primary-600 px-6 py-3 text-base font-medium text-primary-700 hover:bg-primary-200"
                     >
                       Sign In
                     </Link>
@@ -139,7 +158,7 @@ const HomePage: React.FC = () => {
             <div className="hidden lg:block lg:w-1/2">
               <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-primary-200">
                 <img
-                  src="https://images.pexels.com/photos/7092613/pexels-photo-7092613.jpeg"
+                  src={main}
                   alt="Student learning"
                   className="h-auto w-full object-cover"
                 />
@@ -150,8 +169,12 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* Stats Section */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-16 z-10 relative">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div
+        className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-16 z-10 relative rounded-2xl overflow-hidden"
+        
+      >
+        <div className="absolute inset-0 bg-white bg-opacity-70 z-0"></div>
+        <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-6 py-8">
           {stats.map((stat, idx) => (
             <div
               key={idx}
@@ -166,8 +189,17 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* Features Section */}
-      <div className="py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div
+        className="py-24 relative"
+        style={{
+          backgroundImage: `url(${statsBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-100 via-primary-200 to-primary-50 opacity-70"></div>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tight text-primary-900 sm:text-4xl">
               Why Choose MentorMatch?
@@ -211,14 +243,14 @@ const HomePage: React.FC = () => {
           <div className="grid gap-10 md:grid-cols-3">
             {roles.map((role, index) => (
               <div
-                key={index}
-                className="overflow-hidden rounded-2xl bg-white bg-opacity-80 shadow-xl transition-all duration-300 hover:shadow-2xl flex flex-col"
+              key={index}
+              className="overflow-hidden rounded-2xl bg-white bg-opacity-80 shadow-xl transition-all duration-300 hover:shadow-2xl flex flex-col"
               >
                 <img
                   src={role.image}
                   alt={role.title}
                   className="h-48 w-full object-cover"
-                />
+                  />
                 <div className="p-8 flex-1 flex flex-col">
                   <h3 className="text-xl font-semibold text-primary-900">
                     {role.title}
@@ -245,8 +277,8 @@ const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             <div>
               <div className="flex items-center">
-                <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary-600 text-white">
-                  <BookOpen size={24} />
+                <div className="flex h-10 w-10 items-center justify-center ">
+                  <Logo />
                 </div>
                 <span className="ml-2 text-xl font-bold">MentorMatch</span>
               </div>

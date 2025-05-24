@@ -7,6 +7,8 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import side from '../../assets/register.png'; 
+import Logo from '../../components/layout/Logo';
 
 const Register: React.FC = () => {
   const [activeRole, setActiveRole] = useState('student');
@@ -104,12 +106,12 @@ const Register: React.FC = () => {
   return (
     <div className="flex min-h-screen">
       {/* Left Side - Form */}
-      <div className="flex w-full flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:w-1/2">
+      <div className="flex w-full bg-primary-200 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:w-1/2">
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div className="text-center">
             <Link to="/" className="inline-flex items-center">
-              <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary-600 text-white">
-                <BookOpen size={24} />
+              <div className="flex h-10 w-10 items-center justify-center ">
+                <Logo />
               </div>
               <span className="ml-2 text-xl font-bold text-gray-900">MentorMatch</span>
             </Link>
@@ -453,7 +455,7 @@ const Register: React.FC = () => {
         ></motion.div>
         <img
           className="absolute inset-0 h-full w-full object-cover"
-          src="https://images.pexels.com/photos/3182755/pexels-photo-3182755.jpeg"
+          src={side}
           alt="People collaborating"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-white">
