@@ -27,7 +27,7 @@ const Chatbot: React.FC = () => {
     setMessages(msgs => [...msgs, loadingMessage]);
 
     try {
-      const response = await fetch('https://mentor-match-backend-wtv3.onrender.com/api/groq/chat', {
+      const response = await fetch('https://mentor-match-backend-14rp.onrender.com/api/groq/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
