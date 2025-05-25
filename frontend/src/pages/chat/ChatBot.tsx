@@ -144,7 +144,7 @@ const ChatBot: React.FC = () => {
 
   async function askGroq(prompt: string): Promise<string> {
     try {
-      const response = await fetch('http://localhost:5000/api/groq/chat', {
+      const response = await fetch('https://mentor-match-backend-wtv3.onrender.com/api/groq/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt }),
