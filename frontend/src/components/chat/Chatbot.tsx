@@ -3,7 +3,8 @@ import { Send, Loader2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown'; // <-- Add this import
 
 const Chatbot: React.FC = () => {
-  const [messages, setMessages] = useState<{ sender: 'user' | 'ai'; text: string }[]>([]);
+  type Message = { sender: 'user' | 'ai'; text: string } | { sender: 'loading'; text: string; id: string };
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showEscalateButton, setShowEscalateButton] = useState(false);
@@ -23,8 +24,8 @@ const Chatbot: React.FC = () => {
     setMessages(msgs => [...msgs, { sender: 'user', text: input }]);
     setInput('');
     setIsLoading(true);
-
-    const loadingMessage = { id: `loading-${Date.now()}`, text: '', sender: 'loading' };
+    const loadingMessage = { id: `loading-${Date.now()}`, text: '', sender: 'loading' as const };
+    setMessages(msgs => [...msgs, loadingMessage]);
     setMessages(msgs => [...msgs, loadingMessage]);
 
     try {
@@ -73,21 +74,29 @@ const Chatbot: React.FC = () => {
     <div className="flex h-full flex-col">
       <div className="flex-1 overflow-y-auto p-4">
         <div className="space-y-4">
-          <div className="chat-window">
-            {messages.map((msg, idx) => (
-              <div key={idx} className={msg.sender === 'user' ? 'user-msg' : 'ai-msg'}>
-                {msg.sender === 'ai' ? (
-                  <div className="prose prose-sm max-w-none">
-                    <ReactMarkdown>{msg.text}</ReactMarkdown>
-                  </div>
-                ) : (
-                  msg.text
-                )}
-              </div>
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
-
+          {messages.map((msg, idx) => (
+            <div
+              key={msg.sender === 'loading' && 'id' in msg ? msg.id : idx}
+              className={
+                msg.sender === 'user'
+                  ? 'user-msg'
+                  : msg.sender === 'ai'
+                  ? 'ai-msg'
+                  : 'loading-msg'
+              }
+            >
+              {msg.sender === 'ai' ? (
+                <div className="prose prose-sm max-w-none">
+                  <ReactMarkdown>{msg.text}</ReactMarkdown>
+                </div>
+              ) : msg.sender === 'loading' ? (
+                <Loader2 className="animate-spin" />
+              ) : (
+                msg.text
+              )}
+            </div>
+          ))}
+          <div ref={messagesEndRef} />
           {showEscalateButton && (
             <div className="my-4 flex justify-center">
               <button
