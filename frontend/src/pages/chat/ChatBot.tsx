@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Send, User, Bot, Clock, ExternalLink, RotateCcw } from 'lucide-react';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 import { useAuth } from '../../contexts/AuthContext';
+import ReactMarkdown from 'react-markdown';
 
 interface Message {
   id: string;
@@ -219,7 +220,14 @@ const ChatBot: React.FC = () => {
                           {message.name}
                         </div>
                       )}
-                      <p className="text-sm">{message.text}</p>
+                      {/* Render markdown for AI messages */}
+                      {message.sender === 'ai' ? (
+                        <div className="prose prose-sm max-w-none">
+                          <ReactMarkdown>{message.text}</ReactMarkdown>
+                        </div>
+                      ) : (
+                        <p className="text-sm">{message.text}</p>
+                      )}
                       <div className="mt-1 flex items-center justify-end space-x-2">
                         <Clock size={12} className="text-gray-400" />
                         <p className="text-xs text-gray-400">
