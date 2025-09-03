@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Loader2 } from 'lucide-react';
+import ReactMarkdown from 'react-markdown'; // <-- Add this import
 
 const Chatbot: React.FC = () => {
   const [messages, setMessages] = useState<{ sender: 'user' | 'ai'; text: string }[]>([]);
@@ -75,7 +76,13 @@ const Chatbot: React.FC = () => {
           <div className="chat-window">
             {messages.map((msg, idx) => (
               <div key={idx} className={msg.sender === 'user' ? 'user-msg' : 'ai-msg'}>
-                {msg.text}
+                {msg.sender === 'ai' ? (
+                  <div className="prose prose-sm max-w-none">
+                    <ReactMarkdown>{msg.text}</ReactMarkdown>
+                  </div>
+                ) : (
+                  msg.text
+                )}
               </div>
             ))}
             <div ref={messagesEndRef} />
